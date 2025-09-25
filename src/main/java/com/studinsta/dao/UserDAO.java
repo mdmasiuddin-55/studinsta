@@ -23,12 +23,13 @@ public class UserDAO {
         }
     }
 
-    public User loginUser(String email, String password) {
+    public User loginUser(String usernameOrEmail, String password) {
         try (Connection con = DBConnection.getConnection()) {
-            String query = "SELECT * FROM users WHERE email=? AND password=?";
+            String query = "SELECT * FROM users WHERE (email=? OR name=?) AND password=?";
             PreparedStatement ps = con.prepareStatement(query);
-            ps.setString(1, email);
-            ps.setString(2, password);
+            ps.setString(1, usernameOrEmail);
+            ps.setString(2, usernameOrEmail);
+            ps.setString(3, password);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {

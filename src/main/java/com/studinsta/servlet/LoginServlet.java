@@ -13,10 +13,10 @@ public class LoginServlet extends HttpServlet {
     private UserDAO userDAO = new UserDAO();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email = request.getParameter("email");
+        String usernameOrEmail = request.getParameter("usernameOrEmail");
         String password = request.getParameter("password");
 
-        User user = userDAO.loginUser(email, password);
+        User user = userDAO.loginUser(usernameOrEmail, password);
 
         if (user != null) {
             HttpSession session = request.getSession();

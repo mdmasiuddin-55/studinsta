@@ -7,6 +7,9 @@
 </head>
 <body>
     <h2>Sign Up</h2>
+    <form action="signup" method="post">
+        <label>Name:</label><br/>
+        <input type="text" name="name" required/><br/><br/>
         <label>Email:</label><br/>
         <input type="email" name="email" required/><br/><br/>
         <label>Password:</label><br/>
