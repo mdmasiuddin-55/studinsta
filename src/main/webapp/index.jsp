@@ -9,12 +9,13 @@
 <html>
 <head>
     <title>Welcome to StudInsta</title>
-</head>
-<body>
-    <h1>Welcome to StudInsta</h1>
-<html>
-<head>
-    <title>Welcome to StudInsta</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script src="js/script.js"></script>
 </head>
+<body>
+    <h1>Welcome to StudInsta</h1>
+    <p>
+        <a href="login.jsp">Login</a> | <a href="signup.jsp">Sign Up</a>
+    </p>
+</body>
+</html>

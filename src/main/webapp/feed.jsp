@@ -6,17 +6,16 @@
 <html>
 <head>
     <title>Feed - StudInsta</title>
-</head>
-<body>
-<%
-<html>
-<head>
-    <title>Feed - StudInsta</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script src="js/script.js"></script>
 </head>
-<p>Logged in as: <b><%= user.getName() %></b> | <a href="post.jsp">New Post</a></p>
-<hr/>
+<body>
+<%
+    User user = (User) session.getAttribute("user");
+%>
+    <h2>Feed</h2>
+    <p>Logged in as: <b><%= user.getName() %></b> | <a href="post.jsp">New Post</a></p>
+    <hr/>
 
 <%
     // Fetch posts

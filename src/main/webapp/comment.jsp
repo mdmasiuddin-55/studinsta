@@ -7,26 +7,21 @@
     if(user == null){
         response.sendRedirect("login.jsp");
     }
-
     int postId = Integer.parseInt(request.getParameter("postId"));
-
     Connection con = DBConnection.getConnection();
 %>
-<html>
-<head>
-    <title>Comments - StudInsta</title>
-</head>
-<body>
-<%
 <html>
 <head>
     <title>Comments - StudInsta</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script src="js/script.js"></script>
 </head>
+<body>
+    PreparedStatement ps = con.prepareStatement(
+        "SELECT p.id, p.image_url, p.caption, u.name FROM posts p JOIN users u ON p.user_id=u.id WHERE p.id=?"
+    );
     ps.setInt(1, postId);
     ResultSet rs = ps.executeQuery();
-
     if(rs.next()){
         String author = rs.getString("name");
         String imageUrl = rs.getString("image_url");
@@ -36,14 +31,12 @@
     <img src="<%= imageUrl %>" width="400"/><br/>
     <p><%= caption %></p>
     <hr/>
-
     <!-- Comment Form -->
     <form action="comment" method="post">
         <input type="hidden" name="postId" value="<%= postId %>"/>
         <input type="text" name="content" placeholder="Add a comment" required/>
         <button type="submit">Comment</button>
     </form>
-
     <!-- Display comments -->
     <h4>Comments:</h4>
 <%
@@ -65,6 +58,6 @@
 <%
     }
 %>
-<p><a href="feed.jsp">Back to Feed</a></p>
+    <p><a href="feed.jsp">Back to Feed</a></p>
 </body>
 </html>
