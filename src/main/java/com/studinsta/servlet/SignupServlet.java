@@ -13,11 +13,11 @@ public class SignupServlet extends HttpServlet {
     private UserDAO userDAO = new UserDAO();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
+        String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        User user = new User(name, email, password);
+        User user = new User(username, email, password);
 
         if (userDAO.registerUser(user)) {
             response.sendRedirect("login.jsp"); // redirect to login after successful signup

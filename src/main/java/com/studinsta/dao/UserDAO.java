@@ -11,9 +11,9 @@ public class UserDAO {
 
     public boolean registerUser(User user) {
         try (Connection con = DBConnection.getConnection()) {
-            String query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+            String query = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(query);
-            ps.setString(1, user.getName());
+            ps.setString(1, user.getUsername());
             ps.setString(2, user.getEmail());
             ps.setString(3, user.getPassword());
             return ps.executeUpdate() > 0;
@@ -25,7 +25,7 @@ public class UserDAO {
 
     public User loginUser(String usernameOrEmail, String password) {
         try (Connection con = DBConnection.getConnection()) {
-            String query = "SELECT * FROM users WHERE (email=? OR name=?) AND password=?";
+            String query = "SELECT * FROM users WHERE (email=? OR username=?) AND password=?";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, usernameOrEmail);
             ps.setString(2, usernameOrEmail);
@@ -35,7 +35,7 @@ public class UserDAO {
             if (rs.next()) {
                 return new User(
                     rs.getInt("id"),
-                    rs.getString("name"),
+                    rs.getString("username"),
                     rs.getString("email"),
                     rs.getString("password")
                 );
